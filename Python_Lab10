@@ -1,0 +1,49 @@
+def factorial_recursive(n):
+    """Обчислює факторіал числа n рекурсивно."""
+    if not isinstance(n, int):
+        raise TypeError("Аргумент має бути цілим числом")
+    if n < 0:
+        raise ValueError("Факторіал визначено лише для невід'ємних чисел")
+    if n == 0:
+        return 1
+    return n * factorial_recursive(n - 1)
+
+def fibonacci_recursive(n):
+    """Обчислює n-те число Фібоначчі рекурсивно."""
+    if not isinstance(n, int):
+        raise TypeError("Аргумент має бути цілим числом")
+    if n < 0:
+        raise ValueError("Число Фібоначчі визначено лише для невід'ємних чисел")
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    return fibonacci_recursive(n - 1) + fibonacci_recursive(n - 2)
+
+def sum_list_recursive(lst):
+    """Рекурсивно обчислює суму елементів списку."""
+    if not isinstance(lst, list):
+        raise TypeError("Аргумент має бути списком")
+    if len(lst) == 0:
+        return 0
+    return lst[0] + sum_list_recursive(lst[1:])
+
+def is_palindrome_recursive(s):
+    """Рекурсивно перевіряє, чи є рядок паліндромом (ігноруючи пробіли та регістр)."""
+    if not isinstance(s, str):
+        raise TypeError("Аргумент має бути рядком")
+    s = ''.join(c.lower() for c in s if c.isalnum())
+    if len(s) <= 1:
+        return True
+    if s[0] != s[-1]:
+        return False
+    return is_palindrome_recursive(s[1:-1])
+
+if __name__ == "__main__":
+
+    print("Факторіал 5:", factorial_recursive(5))
+    print("6-те число Фібоначчі:", fibonacci_recursive(6))
+    print("Сума списку [1, 2, 3, 4]:", sum_list_recursive([1, 2, 3, 4]))
+    print("Чи 'Racecar' паліндром:", is_palindrome_recursive("Racecar"))
+    print("Чи 'Was it a car or a cat I saw' паліндром:", is_palindrome_recursive("Was it a car or a cat I saw"))
+    print("Чи 'hello' паліндром:", is_palindrome_recursive("hello"))
